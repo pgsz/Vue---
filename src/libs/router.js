@@ -8,12 +8,13 @@ Vue.use(VueRouter)
 import loginin from '../components/loginin.vue'
 
 // 写规则
-let routes = [
-    {
-        path: '/loginin',
-        component: loginin
-    }
-]
+let routes = [{
+    path: '/',
+    redirect: '/loginin'
+}, {
+    path: '/loginin',
+    component: loginin
+}]
 
 // 实例化路由
 const router = new VueRouter({
@@ -22,3 +23,9 @@ const router = new VueRouter({
 
 // 导出
 export default router
+
+
+/*  总结:  
+        1: 在导入的时候 注意大写 Vue  VueRouter (小写虽然没问题,但不规范)
+        2: 步驟: 导入路由  写组件  写规则  实例化路由  导出
+*/
