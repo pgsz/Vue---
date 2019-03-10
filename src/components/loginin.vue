@@ -40,7 +40,7 @@ export default {
             min: 3,
             max: 18,
             message: "长度在 3 到 18 个字符",
-            trigger: "change"
+            trigger: "blur"
           }
         ],
         password: [
@@ -49,7 +49,7 @@ export default {
             min: 3,
             max: 18,
             message: "长度在 3 到 18 个字符",
-            trigger: "change"
+            trigger: "blur"
           }
         ]
       }
@@ -59,10 +59,23 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          //   登录成功
+          this.$http.post('login',this.formData).then(res=>{
+              console.log(res)
+              if(res.data.meta.status === 400){
+                //   弹出提示消息
+                   this.$message.error(res.data.meta.msg);
+              } else {
+                //   弹出提示消息
+                   this.$message.success(res.data.meta.msg);
+                //    记录会话状态
+                window.sessionStorage.setItem('token',res.data.data.token)
+                //  编程试导航  (进行跳转)
+                this.$router.push('/')
+              }
+          })
         } else {
-          //   console.log("error submit!!");
-          //   this.$message.error("请输入正确的用户名和密码");
+          //   登陆失败
           this.$message({
             showClose: true,
             message: "请输入正确的用户名和密码",

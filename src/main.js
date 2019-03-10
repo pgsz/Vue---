@@ -8,7 +8,11 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
-// 导入路由
+// 导入axiso
+import http from './libs/http';
+Vue.use(http)
+
+// 导入组件
 import router from './libs/router';
 
 new Vue({

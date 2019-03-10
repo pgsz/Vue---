@@ -6,14 +6,15 @@ Vue.use(VueRouter)
 
 // 写组件
 import loginin from '../components/loginin.vue'
+import index from '../components/index.vue'
 
 // 写规则
 let routes = [{
-    path: '/',
-    redirect: '/loginin'
-}, {
     path: '/loginin',
     component: loginin
+},{
+    path: '/',
+    component: index
 }]
 
 // 实例化路由
