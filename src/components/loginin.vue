@@ -61,13 +61,13 @@ export default {
         if (valid) {
           //   登录成功
           this.$http.post('login',this.formData).then(res=>{
-              console.log(res)
+              // console.log(res)
               if(res.data.meta.status === 400){
                 //   弹出提示消息
-                   this.$message.error(res.data.meta.msg);
+                  //  this.$message.error(res.data.meta.msg);
               } else {
                 //   弹出提示消息
-                   this.$message.success(res.data.meta.msg);
+                  //  this.$message.success(res.data.meta.msg);
                 //    记录会话状态
                 window.sessionStorage.setItem('token',res.data.data.token)
                 //  编程试导航  (进行跳转)
@@ -76,11 +76,11 @@ export default {
           })
         } else {
           //   登陆失败
-          this.$message({
-            showClose: true,
-            message: "请输入正确的用户名和密码",
-            type: "error"
-          });
+          // this.$message({
+          //   showClose: true,
+          //   message: "请输入正确的用户名和密码",
+          //   type: "error"
+          // });
           return false;
         }
       });

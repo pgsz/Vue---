@@ -13,41 +13,25 @@
     </el-header>
     <el-container class="index-container">
       <el-aside width="200px" class="index-aside">
-        <el-row>
-          <el-col :span="12" class="index-aside-title">
-            <el-menu
-              default-active="2"
-              class="el-menu-vertical-demo"
-              @open="handleOpen"
-              @close="handleClose"
-            >
-              <el-submenu index="1">
-                <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span>导航一</span>
-                </template>
-                <el-menu-item-group>
-                  <template slot="title">分组一</template>
-                  <el-menu-item index="1-1">选项1</el-menu-item>
-                  <el-menu-item index="1-2">选项2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="分组2">
-                  <el-menu-item index="1-3">选项3</el-menu-item>
-                </el-menu-item-group>
-                <el-submenu index="1-4">
-                  <template slot="title">选项4</template>
-                  <el-menu-item index="1-4-1">选项1</el-menu-item>
-                </el-submenu>
-              </el-submenu>
-              <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">导航二</span>
-              </el-menu-item>
-            </el-menu>
-          </el-col>
-        </el-row>
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          router
+        >
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>用户管理</span>
+            </template>
+              <el-menu-item index="users" class="el-icon-menu">用户列表</el-menu-item>
+          </el-submenu>
+        </el-menu>
       </el-aside>
-      <el-main class="index-main">Main</el-main>
+      <el-main class="index-main">
+
+        <router-view></router-view>
+
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -62,7 +46,7 @@ export default {
     } else {
       // 没有登录
       // 提示用户
-      this.$message.warning("请先进行登录");
+      // this.$message.warning("请先进行登录");
       // 跳到登录页
       this.$router.push("/loginin");
     }
@@ -80,10 +64,10 @@ export default {
             type: "success",
             message: "已退出!"
           });
-        //   删除token
-        window.sessionStorage.removeItem('token')
-        // 退到登陆页面
-        this.$router.push('/loginin')
+          //   删除token
+          window.sessionStorage.removeItem("token");
+          // 退到登陆页面
+          this.$router.push("/loginin");
         })
         .catch(() => {
           this.$message({
@@ -92,12 +76,6 @@ export default {
           });
         });
     },
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
   }
 };
 </script>
@@ -129,9 +107,10 @@ export default {
 .index-aside {
   width: 200px;
 }
-.index-main {
+.index-main.index-main {
   flex: 1;
   background-color: #e9eef3;
+  padding-top: 0;
 }
 .index-aside-title {
   width: 100%;
